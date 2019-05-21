@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './StoreFront.css';
 
 class StoreFront extends Component {
+  componentDidMount(){
+    // console.log(this.props.products)
+  }
   render() {
-    console.log(this.props.products)
-    const productDisplay = this.props.products.map(function(element, index){
+    const productDisplay = this.props.products.map((element, index)=>{
       return (
         <div className="product-container" key={index}>
           <h2>{element.title}</h2>

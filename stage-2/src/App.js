@@ -21,17 +21,19 @@ class App extends Component {
       .get("https://practiceapi.devmountain.com/products/")
       .then(response => {
         this.setState({
-          products: response
+          products: response.data
         });
       });
   }
   addToCart(item) {
+    let newCart = this.state.cart
+    newCart.push(item)
     this.setState({
-      cart: item
+      cart: newCart
     });
   }
   removeFromCart(index) {
-    let cartCopy = this.state.products.slice();
+    let cartCopy = this.state.cart.slice();
     cartCopy.splice(index, 1);
     this.setState({
       cart: cartCopy
