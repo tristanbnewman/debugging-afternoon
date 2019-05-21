@@ -5,14 +5,18 @@ import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 import NavBar from "./Components/NavBar/NavBar";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
       products: [],
       cart: [],
       showCart: false
     };
+    this.addToCart = this.addToCart.bind(this)
+    this.navigate = this.navigate.bind(this)
+    this.removeFromCart = this.removeFromCart.bind(this)
   }
+
   componentDidMount() {
     axios
       .get("https://practiceapi.devmountain.com/products/")
@@ -21,10 +25,12 @@ class App extends Component {
           products: response.data
         });
       });
+  
   }
-  addToCart(item) {
-    this.setState({
-      cart: [...this.state.cart, item]
+  addToCart(item) { 
+    console.log(item)
+    console.log(this.state)
+    this.setState({cart: [...this.state.cart, item]
     });
   }
   removeFromCart(index) {
@@ -33,16 +39,19 @@ class App extends Component {
     this.setState({
       cart: cartCopy
     });
+    console.log(this.state.cart)
   }
   navigate(location) {
     if (location === "cart") {
-      this.state.showCart = true;
+      this.setState({showCart: true})
     } else {
-      this.state.showCart = false;
+      this.setState({showCart: false})
     }
   }
+
   render() {
     const { products, cart, showCart } = this.state;
+    console.log(this.state)
     return (
       <div className="App">
         <NavBar navigate={this.navigate} />
