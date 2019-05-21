@@ -5,7 +5,7 @@ import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 import NavBar from "./Components/NavBar/NavBar";
 
 class App extends Component {
-  constuctor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       products: [],
@@ -48,8 +48,13 @@ class App extends Component {
       });
     }
   }
+
   render() {
-    const { products, cart, showCart } = this.state;
+    let {products, cart, showCart} = this.state
+    // {console.log({products})}
+    // {console.log({cart})}
+    // {console.log({showCart})}
+
     return (
       <div className="App">
         <NavBar navigate={this.navigate} />
